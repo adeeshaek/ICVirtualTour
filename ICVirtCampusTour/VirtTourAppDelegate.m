@@ -14,13 +14,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
 
     
-        self.viewController = [[VirtTourViewController alloc] initWithNibName:@"VirtTourViewController_iPhone" bundle:nil];
+    VirtTourViewController* viewController = [[VirtTourViewController alloc] initWithNibName:@"VirtTourViewController_iPhone" bundle:nil];
     
-    self.window.rootViewController = self.viewController;
+    UINavigationController* navigationController = [[UINavigationController alloc]initWithRootViewController:viewController];
+    
+    [self.window setRootViewController: navigationController];
     [self.window makeKeyAndVisible];
     return YES;
 }
