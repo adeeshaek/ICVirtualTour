@@ -7,6 +7,11 @@
 }
 
 @property (nonatomic, retain) NSArray *placesOfInterest;
+/**
+ *	@brief	used to figure out when labels overlap. is a hashtable of arrays for speed
+ */
+@property (nonatomic, retain) NSHashTable *placesDict;
+
 - (void)start;
 - (void)stop;
 @end

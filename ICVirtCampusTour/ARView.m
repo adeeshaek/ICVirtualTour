@@ -50,6 +50,8 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 	mat4f_t projectionTransform;
 	mat4f_t cameraTransform;	
 	vec4f_t *placesOfInterestCoordinates;
+    
+    
 }
 
 - (void)initialize;
@@ -88,6 +90,7 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 	[self startLocation];
 	[self startDeviceMotion];
 	[self startDisplayLink];
+
 }
 
 - (void)stop
@@ -97,6 +100,8 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 	[self stopDeviceMotion];
 	[self stopDisplayLink];
 }
+
+
 
 - (void)setPlacesOfInterest:(NSArray *)pois
 {
@@ -124,6 +129,7 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 	
 	// Initialize projection matrix	
 	createProjectionMatrix(projectionTransform, 60.0f*DEGREES_TO_RADIANS, self.bounds.size.width*1.0f / self.bounds.size.height, 0.25f, 1000.0f);
+    
 }
 
 - (void)startCameraPreview
@@ -284,20 +290,42 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 	multiplyMatrixAndMatrix(projectionCameraTransform, projectionTransform, cameraTransform);
 	
 	int i = 0;
+    
+    //init the datastruc here
+    _placesDict = [[NSHashTable alloc] init];
+    
 	for (PlaceOfInterest *poi in [placesOfInterest objectEnumerator]) {
 		vec4f_t v;
 		multiplyMatrixAndVector(v, projectionCameraTransform, placesOfInterestCoordinates[i]);
 		
 		float x = (v[0] / v[3] + 1.0f) * 0.5f;
 		float y = (v[1] / v[3] + 1.0f) * 0.5f;
+        
+        //check for overlap here, and enter into the datastructure        
+        
 		if (v[2] < 0.0f) {
-			poi.view.center = CGPointMake(x*self.bounds.size.width, self.bounds.size.height-y*self.bounds.size.height);
+            
+            //calculate x and y
+            float xPos = x*self.bounds.size.width;
+            float yPos = (1-y) * self.bounds.size.width;
+            
+            
+			//poi.view.center = CGPointMake(x*self.bounds.size.width, self.bounds.size.height-y*self.bounds.size.height);
+            
+            poi.view.center = CGPointMake(xPos, yPos);
+            
 			poi.view.hidden = NO;
 		} else {
 			poi.view.hidden = YES;
 		}
+        
+        NSLog(@"x: %f, y:%f, width: %f, height: %f", x, y, x*self.bounds.size.width, self.bounds.size.height*(1-y));
+        
 		i++;
 	}
+    
+    //nullify the hashtable
+    _placesDict = NULL;
 
 }
 
