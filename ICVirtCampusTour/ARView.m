@@ -292,7 +292,12 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 	int i = 0;
     
     //init the datastruc here
-    _placesDict = [[NSHashTable alloc] init];
+    _placesArray = malloc(120 * sizeof(int*));
+    
+    for (int i=0; i <120; i++)
+    {
+        *(_placesArray+i) = malloc(MAXSIZE * sizeof(int));
+    }
     
     
 	for (PlaceOfInterest *poi in [placesOfInterest objectEnumerator]) {
@@ -313,34 +318,78 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
             float xPos = self.bounds.size.width * (x-0.5);
             float yPos = (1-y) * self.bounds.size.width;
             
+            //check xpos for overlap
+            int placesArrayIndex = (int) ((xPos/500) + 60);
+            
+            if (placesArrayIndex > 0 && placesArrayIndex < 120)
+            {
+                //check if the array index is null
+                if (_placesArray[placesArrayIndex][0] == 0)
+                {
+                    //if null, add and move on
+                    _placesArray[placesArrayIndex][0] = 1;
+                    
+                }
+                else
+                {
+                    //if not null, add to the 2nd arr
+                    //find the next empty slot in the arr
+                    int j=0;
+                    while (_placesArray[placesArrayIndex][j] != 0)
+                        j++;
+                
+                    //add to the jth element
+                    _placesArray[placesArrayIndex][j] = 1;
+                    
+                    int index = j+1;
+                    
+                    //if odd index - yPos += (i * self.bounds.size.height)
+                    if(index % 2)
+                    {
+                        yPos += (index * 10);
+                    }
+                    
+                    //find if even index - yPos -= (i * self.bounds.size.height)
+                    else
+                    {
+                        yPos -= (index * 10);
+                    }
+                    
+                }
+                
+                
+            }
+            
             poi.view.center = CGPointMake(xPos, yPos);
             
 			poi.view.hidden = NO;
+            
+            //NSLog(@"pai: %d", placesArrayIndex);
+            
 		} else {
 			poi.view.hidden = YES;
 		}
         
-        //NSLog(@"x: %f, y:%f, width: %f, height: %f", x, y, x*self.bounds.size.width, self.bounds.size.height*(1-y));
+        //NSLog(@"x: %f, y:%f, width: %f, height: %f", x, y, self.bounds.size.width, self.bounds.size.height);
         
         /*
-        if ((int) xPos > _maxX)
-        {
-            _maxX = (int) xPos;
-        }
-        
-        if ((int) xPos < _minX)
-        {
-            _minX = (int) xPos;
-        }
-        
-        NSLog(@"MinX: %ld, MaxX: %ld", (long)_minX, (long)_maxX);
+         //test code
+         if ((int) xPos > _maxX)
+         {
+         _maxX = (int) xPos;
+         }
+         
+         if ((int) xPos < _minX)
+         {
+         _minX = (int) xPos;
+         }
          */
         
 		i++;
 	}
     
     //nullify the hashtable
-    _placesDict = NULL;
+    _placesArray = NULL;
 
 }
 
