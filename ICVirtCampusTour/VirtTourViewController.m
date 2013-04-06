@@ -26,6 +26,11 @@
 
 @implementation VirtTourViewController
 
+-(void)showDetailedViewWithName:(NSString*)name
+{
+    NSLog(@"WORKING!");
+}
+
 -(void)httpError
 {
     NSLog(@"Error with internet connection...");
@@ -84,9 +89,10 @@
         
         ARMarker* marker = [[ARMarker alloc] initWithImage:@"Pointer.PNG" andTitle:[building objectForKey:@"name"]];
         
+        marker.parent = self;
+        
         double latitude = [[building objectForKey:@"x"] doubleValue];
         double longitude = [[building objectForKey:@"y"] doubleValue];
-        
         
         PlaceOfInterest *poi = [PlaceOfInterest placeOfInterestWithView:marker at:[[CLLocation alloc] initWithLatitude:latitude longitude:longitude]];
 		[placesOfInterest insertObject:poi atIndex:i];

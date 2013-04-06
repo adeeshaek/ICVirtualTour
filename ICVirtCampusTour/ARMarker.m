@@ -11,6 +11,8 @@
 - (id)initWithImage:(NSString *)image
        andTitle:(NSString*)title{
     
+    _name = title;
+    
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);	
 	if (self = [super initWithFrame:theFrame]) {
                 
@@ -24,7 +26,7 @@
         //Create the expand button
         _expandViewButton = [[UIButton alloc]initWithFrame:CGRectMake(_titleLabel.frame.origin.x + 150, _titleLabel.frame.origin.y, 40, 50)];
         [_expandViewButton setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-        [_expandViewButton addTarget:self action:@selector(expandInfoView) forControlEvents:UIControlEventTouchUpInside];
+        [_expandViewButton addTarget:self action:@selector(launchInfoView) forControlEvents:UIControlEventTouchUpInside];
 		                
         //Add the marker views
         [self addSubview:_titleLabel];
@@ -38,7 +40,7 @@
 
 -(void)launchInfoView
 {
-    NSLog(@"Hello");
+    [_parent showDetailedViewWithName:(NSString*)_name];
 }
 
 - (void)expandInfoView{

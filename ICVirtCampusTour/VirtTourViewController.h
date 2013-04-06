@@ -17,6 +17,7 @@
 @interface VirtTourViewController : UIViewController<MKMapViewDelegate>
 
 -(void)httpError;
+-(void)showDetailedViewWithName:(NSString*)name;
 
 @property (nonatomic, strong) MapOverlay *mapOverlay;
 @property (nonatomic, strong) MapOverlayView *mapOverlayView;

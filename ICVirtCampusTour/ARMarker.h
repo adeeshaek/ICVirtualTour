@@ -1,6 +1,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "VirtTourViewController.h"
 #import <UIKit/UIKit.h>
 
 @class ARCoordinate;
@@ -15,6 +16,8 @@
 @property (nonatomic, strong) UIButton *expandViewButton;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic) BOOL expanded;
+@property (nonatomic, strong) VirtTourViewController* parent;
+@property (nonatomic, strong) NSString* name;
 
 - (id)initWithImage:(NSString *)image
            andTitle:(NSString*)title;
