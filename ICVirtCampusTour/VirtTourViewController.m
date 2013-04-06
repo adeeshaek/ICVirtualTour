@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 IC. All rights reserved.
 //
 
+
 #import "VirtTourViewController.h"
 
 //Augmented Reality headers
@@ -29,6 +30,11 @@
 -(void)showDetailedViewWithName:(NSString*)name
 {
     NSLog(@"WORKING!");
+    
+    UIStoryboard *detailedView = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    ARDetailedViewController* newView = [detailedView instantiateViewControllerWithIdentifier:@"DetailedView"];
+
+    
 }
 
 -(void)httpError
