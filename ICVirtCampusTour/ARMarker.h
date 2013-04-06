@@ -6,6 +6,7 @@
 
 @class ARCoordinate;
 @class ARDetailedViewController;
+@class VirtTourViewController;
 
 @protocol detailViewController;
 
@@ -17,6 +18,7 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic) BOOL expanded;
 @property (nonatomic, strong) VirtTourViewController* parent;
+@property (nonatomic) NSInteger rowId;
 @property (nonatomic, strong) NSString* name;
 
 - (id)initWithImage:(NSString *)image

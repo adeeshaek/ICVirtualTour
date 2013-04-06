@@ -40,7 +40,7 @@
 
 -(void)launchInfoView
 {
-    [_parent showDetailedViewWithName:(NSString*)_name];
+    [_parent showDetailedViewWithRowId:_rowId];
 }
 
 - (void)expandInfoView{

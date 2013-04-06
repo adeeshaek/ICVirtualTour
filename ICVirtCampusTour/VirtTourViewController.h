@@ -11,13 +11,16 @@
 #import <CoreMotion/CoreMotion.h>
 #import "DBWrapper.h"
 
+
 @class MapOverlay;
 @class MapOverlayView;
+
+@protocol detailViewControllerDelegate;
 
 @interface VirtTourViewController : UIViewController<MKMapViewDelegate>
 
 -(void)httpError;
--(void)showDetailedViewWithName:(NSString*)name;
+-(void)showDetailedViewWithRowId:(NSInteger)rowId;
 
 @property (nonatomic, strong) MapOverlay *mapOverlay;
 @property (nonatomic, strong) MapOverlayView *mapOverlayView;
@@ -26,7 +29,14 @@
 @property (nonatomic, strong) CMMotionManager *manager;
 
 @property (nonatomic, strong) DBWrapper* myDBWrapper;
+@property (nonatomic, strong) NSArray* buildings;
 
 @property (nonatomic, strong) NSMutableArray *buildingNames;
 @property (nonatomic) BOOL ARViewDisplayed;
+@end
+
+@protocol detailViewControllerDelegate <NSObject>
+
+-(void)setCellDataWithName:(NSString *)name andImageName:(NSString *)imageName andText:(NSString *)text;
+
 @end

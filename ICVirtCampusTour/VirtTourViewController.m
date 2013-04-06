@@ -11,6 +11,7 @@
 
 //Augmented Reality headers
 #import "PlaceOfInterest.h"
+#import "ARDetailedViewController.h"
 #import "ARView.h"
 #import "ARMarker.h"
 
@@ -27,15 +28,29 @@
 
 @implementation VirtTourViewController
 
--(void)showDetailedViewWithName:(NSString*)name
+-(void)showDetailedViewWithRowId:(NSInteger)rowId
 {
-    NSLog(@"WORKING!");
+    //get the data to display the detailed view
+    NSDictionary* rowData = [_myDBWrapper getRowWithRowId:rowId andCallback:^
+                             {
+                                 [self httpError];
+                             }];
+    
+    NSString* title = [rowData valueForKey:@"name"];
+    NSString* image = [rowData valueForKey:@"image"];
+    
+    NSString* text = [[_myDBWrapper getTextWithRowId:rowId andCallback:^
+                      {
+                          [self httpError];
+                      }] objectForKey:@"text"];
     
     UIStoryboard *detailedView = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     ARDetailedViewController* newView = [detailedView instantiateViewControllerWithIdentifier:@"DetailedView"];
 
     [self.navigationController pushViewController:newView animated:YES];
     
+    [newView setCellDataWithName:title andImageName:image andText:text];
+
 }
 
 -(void)httpError
@@ -59,6 +74,8 @@
     {
         [self httpError];
     }];
+    
+    _buildings = buildings;
     
     /*
      checking contents of dictionary
@@ -101,6 +118,7 @@
         ARMarker* marker = [[ARMarker alloc] initWithImage:@"Pointer.PNG" andTitle:[building objectForKey:@"name"]];
         
         marker.parent = self;
+        marker.rowId = (i+1);
         
         double latitude = [[building objectForKey:@"x"] doubleValue];
         double longitude = [[building objectForKey:@"y"] doubleValue];
