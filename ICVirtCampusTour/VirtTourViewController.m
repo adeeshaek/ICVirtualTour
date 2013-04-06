@@ -34,6 +34,7 @@
     UIStoryboard *detailedView = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     ARDetailedViewController* newView = [detailedView instantiateViewControllerWithIdentifier:@"DetailedView"];
 
+    [self.navigationController pushViewController:newView animated:YES];
     
 }
 
