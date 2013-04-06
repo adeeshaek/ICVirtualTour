@@ -294,6 +294,7 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
     //init the datastruc here
     _placesDict = [[NSHashTable alloc] init];
     
+    
 	for (PlaceOfInterest *poi in [placesOfInterest objectEnumerator]) {
 		vec4f_t v;
 		multiplyMatrixAndVector(v, projectionCameraTransform, placesOfInterestCoordinates[i]);
@@ -301,16 +302,16 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 		float x = (v[0] / v[3] + 1.0f) * 0.5f;
 		float y = (v[1] / v[3] + 1.0f) * 0.5f;
         
-        //check for overlap here, and enter into the datastructure        
+        //check for overlap here, and enter into the datastructure
+
         
 		if (v[2] < 0.0f) {
+    
+			//poi.view.center = CGPointMake(x*self.bounds.size.width, self.bounds.size.height-y*self.bounds.size.height);
             
             //calculate x and y
-            float xPos = x*self.bounds.size.width;
+            float xPos = self.bounds.size.width * (x-0.5);
             float yPos = (1-y) * self.bounds.size.width;
-            
-            
-			//poi.view.center = CGPointMake(x*self.bounds.size.width, self.bounds.size.height-y*self.bounds.size.height);
             
             poi.view.center = CGPointMake(xPos, yPos);
             
@@ -319,7 +320,21 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 			poi.view.hidden = YES;
 		}
         
-        NSLog(@"x: %f, y:%f, width: %f, height: %f", x, y, x*self.bounds.size.width, self.bounds.size.height*(1-y));
+        //NSLog(@"x: %f, y:%f, width: %f, height: %f", x, y, x*self.bounds.size.width, self.bounds.size.height*(1-y));
+        
+        /*
+        if ((int) xPos > _maxX)
+        {
+            _maxX = (int) xPos;
+        }
+        
+        if ((int) xPos < _minX)
+        {
+            _minX = (int) xPos;
+        }
+        
+        NSLog(@"MinX: %ld, MaxX: %ld", (long)_minX, (long)_maxX);
+         */
         
 		i++;
 	}

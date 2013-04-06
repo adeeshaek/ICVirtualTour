@@ -12,6 +12,10 @@
  */
 @property (nonatomic, retain) NSHashTable *placesDict;
 
+//test code
+@property NSInteger maxX;
+@property NSInteger minX;
+
 - (void)start;
 - (void)stop;
 @end
