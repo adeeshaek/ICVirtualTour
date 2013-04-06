@@ -36,6 +36,11 @@
     return self;
 }
 
+-(void)launchInfoView
+{
+    NSLog(@"Hello");
+}
+
 - (void)expandInfoView{
     NSURL *theURL = [[NSURL alloc]initWithString:@"http://www.destinyusa.com"];
     NSURLRequest *theURLReq = [[NSURLRequest alloc]initWithURL:theURL];

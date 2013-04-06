@@ -26,11 +26,34 @@
 
 @implementation VirtTourViewController
 
+-(void)httpError
+{
+    NSLog(@"Error with internet connection...");
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     ARView *arView = (ARView *)self.view;
     
+    //get building names and locations from database
+    _myDBWrapper = [DBWrapper alloc];
+    
+    NSArray* buildings = [_myDBWrapper getAllBuildingsWithCallback:^
+    {
+        [self httpError];
+    }];
+    
+    /*
+     checking contents of dictionary
+    for (int i=0; i<buildings.count; i++)
+    {
+        NSLog(@"%@", [buildings objectAtIndex:i]);
+    }
+     */
+    
+    /*
+     old code to hard-code the locations
     _buildingNames = [[NSMutableArray alloc]init];
     [_buildingNames addObject:@"Williams"];
     [_buildingNames addObject:@"Health SCiences"];
@@ -44,6 +67,7 @@
     
     int numPois = sizeof(poiCoords) / sizeof(CLLocationCoordinate2D);
     
+
 	NSMutableArray *placesOfInterest = [NSMutableArray arrayWithCapacity:numPois];
 	for (int i = 0; i < numPois; i++) {
         ARMarker *marker = [[ARMarker alloc]initWithImage:@"Pointer.PNG" andTitle:[NSString stringWithFormat:@"%@",[_buildingNames objectAtIndex:i]]];
@@ -51,7 +75,24 @@
 		[placesOfInterest insertObject:poi atIndex:i];
 	}
 	[arView setPlacesOfInterest:placesOfInterest];
-
+    */
+    
+    NSMutableArray* placesOfInterest = [NSMutableArray arrayWithCapacity:buildings.count];
+    for (int i=0; i<buildings.count; i++)
+    {
+        NSDictionary* building = [buildings objectAtIndex:i];
+        
+        ARMarker* marker = [[ARMarker alloc] initWithImage:@"Pointer.PNG" andTitle:[building objectForKey:@"name"]];
+        
+        double latitude = [[building objectForKey:@"x"] doubleValue];
+        double longitude = [[building objectForKey:@"y"] doubleValue];
+        
+        
+        PlaceOfInterest *poi = [PlaceOfInterest placeOfInterestWithView:marker at:[[CLLocation alloc] initWithLatitude:latitude longitude:longitude]];
+		[placesOfInterest insertObject:poi atIndex:i];
+    }
+    
+    [arView setPlacesOfInterest:placesOfInterest];
     
     _theMapView = [[MKMapView alloc]init];
     _theMapView.frame = [[UIScreen mainScreen]bounds];

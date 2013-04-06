@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		772BEF81170F947300D3D600 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 772BEF80170F947300D3D600 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		772BEF85170F948500D3D600 /* DBWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 772BEF84170F948500D3D600 /* DBWrapper.m */; };
 		9C9F98251703B3A10052E5AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9F98241703B3A10052E5AA /* UIKit.framework */; };
 		9C9F98271703B3A10052E5AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9F98261703B3A10052E5AA /* Foundation.framework */; };
 		9C9F98291703B3A10052E5AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9F98281703B3A10052E5AA /* CoreGraphics.framework */; };
@@ -40,6 +42,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		772BEF7F170F947300D3D600 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		772BEF80170F947300D3D600 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		772BEF83170F948500D3D600 /* DBWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBWrapper.h; sourceTree = "<group>"; };
+		772BEF84170F948500D3D600 /* DBWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBWrapper.m; sourceTree = "<group>"; };
 		9C9F98211703B3A10052E5AA /* ICVirtCampusTour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ICVirtCampusTour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9F98241703B3A10052E5AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C9F98261703B3A10052E5AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,6 +111,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		772BEF7E170F946300D3D600 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				772BEF7F170F947300D3D600 /* JSONKit.h */,
+				772BEF80170F947300D3D600 /* JSONKit.m */,
+			);
+			name = JSONKit;
+			sourceTree = "<group>";
+		};
+		772BEF82170F947600D3D600 /* DBWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				772BEF83170F948500D3D600 /* DBWrapper.h */,
+				772BEF84170F948500D3D600 /* DBWrapper.m */,
+			);
+			name = DBWrapper;
+			sourceTree = "<group>";
+		};
 		9C9F98181703B3A10052E5AA = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +167,8 @@
 		9C9F982A1703B3A10052E5AA /* ICVirtCampusTour */ = {
 			isa = PBXGroup;
 			children = (
+				772BEF82170F947600D3D600 /* DBWrapper */,
+				772BEF7E170F946300D3D600 /* JSONKit */,
 				9C9F98691703BEBE0052E5AA /* MapFiles */,
 				9C9F98621703BD6B0052E5AA /* images */,
 				9C9F984A1703B3C90052E5AA /* ARFiles */,
@@ -289,6 +315,8 @@
 				9C9F98721703BF830052E5AA /* Annotation.m in Sources */,
 				9C9F98731703BF830052E5AA /* MapOverlay.m in Sources */,
 				9C9F98741703BF830052E5AA /* MapOverlayView.m in Sources */,
+				772BEF81170F947300D3D600 /* JSONKit.m in Sources */,
+				772BEF85170F948500D3D600 /* DBWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
