@@ -45,6 +45,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //set title
+    self.title = @"IC Virtual Tour";
+    
     ARView *arView = (ARView *)self.view;
     
     //get building names and locations from database
