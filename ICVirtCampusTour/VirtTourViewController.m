@@ -34,6 +34,7 @@
     NSDictionary* rowData = [_myDBWrapper getRowWithRowId:rowId andCallback:^
                              {
                                  [self httpError];
+                                 return;
                              }];
     
     NSString* title = [rowData valueForKey:@"name"];
@@ -42,6 +43,7 @@
     NSString* text = [[_myDBWrapper getTextWithRowId:rowId andCallback:^
                       {
                           [self httpError];
+                          return;
                       }] objectForKey:@"text"];
     
     UIStoryboard *detailedView = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
@@ -56,6 +58,12 @@
 -(void)httpError
 {
     NSLog(@"Error with internet connection...");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                    message:@"Sorry: You must be connected to the internet to use this app."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)viewDidLoad
@@ -73,6 +81,7 @@
     NSArray* buildings = [_myDBWrapper getAllBuildingsWithCallback:^
     {
         [self httpError];
+        return;
     }];
     
     _buildings = buildings;
