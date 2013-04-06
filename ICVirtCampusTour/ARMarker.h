@@ -4,6 +4,9 @@
 #import <UIKit/UIKit.h>
 
 @class ARCoordinate;
+@class ARDetailedViewController;
+
+@protocol detailViewController;
 
 @interface ARMarker : UIView {
 
@@ -17,5 +20,11 @@
            andTitle:(NSString*)title;
 
 - (void)expandInfoView;
+
+@end
+
+@protocol detailViewControllerDelegate <NSObject>
+
+-(void)setCellDataWithName:(NSString*)name andImageName:(NSString*)imageName andText:(NSString*)text;
 
 @end

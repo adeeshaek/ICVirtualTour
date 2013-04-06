@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		772BEF81170F947300D3D600 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 772BEF80170F947300D3D600 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		772BEF85170F948500D3D600 /* DBWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 772BEF84170F948500D3D600 /* DBWrapper.m */; };
+		772BEF89170F9E5E00D3D600 /* ARDetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772BEF87170F9E5D00D3D600 /* ARDetailedViewController.m */; };
+		772BEF8A170F9E5E00D3D600 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 772BEF88170F9E5D00D3D600 /* Storyboard.storyboard */; };
 		9C9F98251703B3A10052E5AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9F98241703B3A10052E5AA /* UIKit.framework */; };
 		9C9F98271703B3A10052E5AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9F98261703B3A10052E5AA /* Foundation.framework */; };
 		9C9F98291703B3A10052E5AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9F98281703B3A10052E5AA /* CoreGraphics.framework */; };
@@ -46,6 +48,9 @@
 		772BEF80170F947300D3D600 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		772BEF83170F948500D3D600 /* DBWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBWrapper.h; sourceTree = "<group>"; };
 		772BEF84170F948500D3D600 /* DBWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBWrapper.m; sourceTree = "<group>"; };
+		772BEF86170F9E5D00D3D600 /* ARDetailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDetailedViewController.h; sourceTree = "<group>"; };
+		772BEF87170F9E5D00D3D600 /* ARDetailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDetailedViewController.m; sourceTree = "<group>"; };
+		772BEF88170F9E5D00D3D600 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		9C9F98211703B3A10052E5AA /* ICVirtCampusTour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ICVirtCampusTour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9F98241703B3A10052E5AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C9F98261703B3A10052E5AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -167,6 +172,9 @@
 		9C9F982A1703B3A10052E5AA /* ICVirtCampusTour */ = {
 			isa = PBXGroup;
 			children = (
+				772BEF86170F9E5D00D3D600 /* ARDetailedViewController.h */,
+				772BEF87170F9E5D00D3D600 /* ARDetailedViewController.m */,
+				772BEF88170F9E5D00D3D600 /* Storyboard.storyboard */,
 				772BEF82170F947600D3D600 /* DBWrapper */,
 				772BEF7E170F946300D3D600 /* JSONKit */,
 				9C9F98691703BEBE0052E5AA /* MapFiles */,
@@ -296,6 +304,7 @@
 				9C9F98671703BD850052E5AA /* PointerPressed.png in Resources */,
 				9C9F98681703BD850052E5AA /* Ithaca_College_Campus_Map.pdf in Resources */,
 				9C9F98761703C2C60052E5AA /* collegeMap.png in Resources */,
+				772BEF8A170F9E5E00D3D600 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +326,7 @@
 				9C9F98741703BF830052E5AA /* MapOverlayView.m in Sources */,
 				772BEF81170F947300D3D600 /* JSONKit.m in Sources */,
 				772BEF85170F948500D3D600 /* DBWrapper.m in Sources */,
+				772BEF89170F9E5E00D3D600 /* ARDetailedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
