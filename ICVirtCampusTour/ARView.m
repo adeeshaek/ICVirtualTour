@@ -370,21 +370,6 @@ void ecefToEnu(double lat, double lon, double x, double y, double z, double xr, 
 			poi.view.hidden = YES;
 		}
         
-        //NSLog(@"x: %f, y:%f, width: %f, height: %f", x, y, self.bounds.size.width, self.bounds.size.height);
-        
-        /*
-         //test code
-         if ((int) xPos > _maxX)
-         {
-         _maxX = (int) xPos;
-         }
-         
-         if ((int) xPos < _minX)
-         {
-         _minX = (int) xPos;
-         }
-         */
-        
 		i++;
 	}
     

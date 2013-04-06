@@ -43,50 +43,5 @@
     [_parent showDetailedViewWithRowId:_rowId];
 }
 
-- (void)expandInfoView{
-    NSURL *theURL = [[NSURL alloc]initWithString:@"http://www.destinyusa.com"];
-    NSURLRequest *theURLReq = [[NSURLRequest alloc]initWithURL:theURL];
-
-    if (!_expanded) {
-        _expanded = TRUE;
-        
-        [UIView animateWithDuration:0.5 animations:^{
-            self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, BOX_WIDTH+80, BOX_HEIGHT);
-            _expandViewButton.transform = CGAffineTransformMakeRotation(-M_PI_2);
-        }completion:^(BOOL finished){
-            [UIView animateWithDuration:.8 animations:^{
-                self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, BOX_WIDTH+80, BOX_HEIGHT+200);
-                
-            }completion:^(BOOL finished){
-                //Create the web view
-                _infoView = [[UIWebView alloc]initWithFrame:CGRectMake(_titleLabel.frame.origin.x, _titleLabel.frame.origin.y+30, self.frame.size.width, self.frame.size.height)];
-                //[self addSubview:_infoView];
-                [self insertSubview:_infoView belowSubview:_expandViewButton];
-                
-                _infoView.scalesPageToFit = YES;
-                [_infoView loadRequest:theURLReq];
-            }];
-            
-        }];
-    }else if (_expanded){
-        _expanded = FALSE;
-        [_infoView removeFromSuperview];
-        [UIView animateWithDuration:0.5 animations:^{
-            self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, BOX_WIDTH+80, BOX_HEIGHT);
-            
-        }completion:^(BOOL finished){
-            [UIView animateWithDuration:.8 animations:^{
-                _expandViewButton.transform = CGAffineTransformMakeRotation(0);
-                self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, BOX_WIDTH, BOX_HEIGHT);
-                
-                
-            }];
-            
-        }];
-        
-    }
-
-}
-
 
 @end
